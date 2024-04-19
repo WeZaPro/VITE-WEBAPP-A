@@ -160,6 +160,7 @@ router.beforeEach((to, from, next) => {
     "/dashboard",
     "/products",
     "/productitem",
+    "/lineuser",
   ];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem("user");

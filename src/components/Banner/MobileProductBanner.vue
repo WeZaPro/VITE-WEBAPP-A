@@ -41,6 +41,7 @@ export default {
 
       const url = import.meta.env.VITE_API_MONGO + "/admin/products";
       await axios.get(url).then((res) => {
+        console.log("res--> ", res);
         this.banner = res.data.data[0].MobileBanner;
         console.log("this.banner MobileBanner--> ", this.banner);
 

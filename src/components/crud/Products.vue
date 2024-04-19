@@ -15,68 +15,7 @@
     </div>
   </div>
 
-  <div>
-    <!-- <v-container fluid class="bg-deep-purple"> -->
-    <!-- <v-container fluid class=""> -->
-    <!-- <v-col cols="12" sm="12"> -->
-    <!-- <v-sheet class="ma-0 pa-0 align-content"> TEXT </v-sheet> -->
-    <!-- <div class="ma-0 pa-0 text-center">TEXT</div> -->
-
-    <!-- <v-parallax
-      height="300"
-      src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
-    ></v-parallax> -->
-
-    <!-- </v-col> -->
-    <!-- </v-container> -->
-  </div>
-
-  <!-- <v-container class="bg-surface-variant">
-    <v-row no-gutters>
-      <v-col cols="12" sm="12">
-        <v-sheet class="ma-0 pa-0 align-content">
-          <div className=" grid-container ">
-            <CardDesign
-              class="card"
-              v-for="item in products"
-              v-bind="item"
-              :key="item.id"
-            />
-          </div>
-        </v-sheet>
-      </v-col>
-    </v-row>
-  </v-container> -->
-
-  <!-- ------ -->
-  <!-- <div class="mt-0">
-    <v-row justify="center">
-      <v-col cols="12">
-        <v-sheet class="pa-2 ma-2">
-          <div className=" grid-container">
-            
-            <Card v-for="item in products" v-bind="item" :key="item.id" />
-          </div>
-        </v-sheet>
-      </v-col>
-    </v-row>
-  </div> -->
-  <!-- ------ -->
-  <!-- <div>
-    <v-row justify="center mb-5">
-      <v-col cols="12">
-        <div className=" grid-container">
-          <CardDesign
-            class="card"
-            v-for="item in products"
-            v-bind="item"
-            :key="item.id"
-          />
-        </div>
-      </v-col>
-    </v-row>
-  </div> -->
-
+  <div></div>
   <!-- ------ -->
   <div>
     <v-row justify="center mb-5">
@@ -182,7 +121,7 @@ export default {
       const url = import.meta.env.VITE_API_MONGO + "/admin/products";
       await axios.get(url).then((res) => {
         this.products = res.data.data;
-        // console.log("this.products ", this.products);
+        // console.log("res ", res.data);
       });
     },
   },

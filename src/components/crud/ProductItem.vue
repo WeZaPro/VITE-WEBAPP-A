@@ -114,9 +114,9 @@
   </v-container>
   <!-- product group -->
   <div v-show="show">
-    <v-row justify="center mb-0 mt-0">
+    <v-row justify="center mb-0 mt-0 ">
       <v-col cols="12">
-        <div className="grid-container">
+        <div className="grid-container ">
           <v-card
             v-for="item in productArr"
             v-bind="item"
@@ -125,11 +125,33 @@
             elevation="12"
             rounded="lg"
             max-width="600"
-            subtitle="Same looks, no anchor"
-            title="Hover and click me"
+            color="primary"
+            append-icon="mdi-check"
+            subtitle="รายการอาหารแนะนำ !"
+            :title="item.key"
+            append-avatar="https://freedesignfile.com/upload/2020/09/Tasty-food-vector-icon.jpg"
             link
           >
-            <v-img height="300px" :src="item.val" cover></v-img>
+            <v-icon color="sussess" icon="mdi-account"></v-icon>
+            <v-rating
+              :model-value="4.5"
+              color="amber"
+              density="compact"
+              size="small"
+              half-increments
+              readonly
+            ></v-rating>
+            <v-img class="zoom" height="300px" :src="item.val" cover></v-img>
+
+            <!-- <v-icon color="sussess" icon="mdi-account"></v-icon>
+            <v-rating
+              :model-value="4.5"
+              color="amber"
+              density="compact"
+              size="small"
+              half-increments
+              readonly
+            ></v-rating> -->
           </v-card>
         </div>
       </v-col>
@@ -155,13 +177,16 @@ export default {
   },
   data() {
     return {
+      lineAdd: "",
       shop: "",
       title: "",
       detail: "",
       show: false,
       productArr: [],
+      titleArr: [],
       result: [],
       productGroup: [],
+      titleGroup: [],
       positionMap: ["13.562704917188565", "100.98740773760905"],
       arrPosMap: [],
       center: "",
@@ -195,6 +220,7 @@ export default {
   methods: {
     clickContact(id) {
       console.log("id ", id);
+      window.open(this.lineAdd, "_blank");
     },
     map() {
       //13.885093361152009, 100.73856297022726
@@ -221,28 +247,40 @@ export default {
         this.products = res.data.data;
 
         this.products.forEach((element) => {
+          //console.log("element LineAdd ", element.LineAdd);
           if (element.id == id) {
+            this.lineAdd = element.LineAdd;
             this.shop = element.DataA;
             this.title = element.DataB;
             this.detail = element.DataC;
             this.itemProduct.push(element);
 
             this.productGroup.push({
-              itemA: element.ProductA,
-              itemB: element.ProductB,
-              itemC: element.ProductC,
-              itemD: element.ProductD,
-              itemE: element.ProductF,
-              itemF: element.ProductG,
+              Recommended_1: element.ProductA,
+              Recommended_2: element.ProductB,
+              Recommended_3: element.ProductC,
+              Recommended_4: element.ProductD,
+              Recommended_5: element.ProductF,
+              Recommended_6: element.ProductG,
             });
+
+            // this.titleGroup.push({
+            //   titleA: element.MenuNameTitleA,
+            //   titleB: element.MenuNameTitleB,
+            //   titleC: element.MenuNameTitleC,
+            //   titleD: element.MenuNameTitleD,
+            //   titleE: element.MenuNameTitleE,
+            //   titleF: element.MenuNameTitleF,
+            // });
           }
         });
-        // console.log("this.itemProduct ", this.itemProduct);
+
         this.image = this.itemProduct[0].img;
         // console.log("this.Image ", this.itemProduct[0].img);
         this.arrPosMap = [this.itemProduct[0].DataD, this.itemProduct[0].DataE];
         //convert obj to arr **********************
 
+        // set image obj to Array ********
         let myKeys = Object.entries(this.productGroup[0]);
         let myKeysArr = [];
 
@@ -251,6 +289,16 @@ export default {
           myKeysArr.push({ key, val });
         });
         this.productArr = myKeysArr;
+        console.log("this.productArr--> ", this.productArr);
+
+        // set title obj to Array ********
+        // let myTitleKeys = Object.entries(this.titleGroup[0]);
+        // let myKeyTitlesArr = [];
+
+        // myTitleKeys.forEach(([key, val]) => {
+        //   myKeyTitlesArr.push({ key, val });
+        // });
+        // this.titleArr = myKeyTitlesArr;
       });
     },
   },
@@ -303,5 +351,19 @@ export default {
   .grid-container {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+/* ZOOM */
+.zoom {
+  padding: 50px;
+  transition: transform 0.2s; /* Animation */
+  max-width: "600";
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(
+    2
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 </style>

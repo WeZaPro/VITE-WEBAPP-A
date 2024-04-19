@@ -15,7 +15,7 @@
         variant="flat"
         @click="clickItem(id)"
       >
-        Create Event
+        ดูรายละเอียด
       </v-btn>
     </v-card-actions>
 

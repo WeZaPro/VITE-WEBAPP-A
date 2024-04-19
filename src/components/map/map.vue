@@ -1,9 +1,8 @@
 <template>
   <div>
     <v-card class="card mt-0" max-width="600">
-      <v-card-title> MAP </v-card-title>
-      <v-card-actions class="justify-center">
-        <!-- <v-btn> Detail </v-btn> -->
+      <!-- <v-card-title> MAP </v-card-title> -->
+      <!-- <v-card-actions class="justify-center">
         <v-btn
           class="text-none text-subtitle-1"
           color="#5865f2"
@@ -13,8 +12,32 @@
         >
           เปิดแผนที่
         </v-btn>
-      </v-card-actions>
-      <div ref="map" style="width: 600px; height: 500px; margin: 0 auto"></div>
+      </v-card-actions> -->
+
+      <div class="text-center">
+        <v-btn
+          append-icon="mdi-account-circle"
+          prepend-icon="mdi-check-circle"
+          color="#5865f2"
+          @click="gotoMap(id)"
+        >
+          <template v-slot:prepend>
+            <v-icon color="success"></v-icon>
+          </template>
+
+          เปิดแผนที่
+
+          <template v-slot:append>
+            <v-icon color="warning"></v-icon>
+          </template>
+        </v-btn>
+      </div>
+
+      <div
+        class="mt-5"
+        ref="map"
+        style="width: 600px; height: 500px; margin: 0 auto"
+      ></div>
     </v-card>
 
     <!-- แสดงแผนที่ -->

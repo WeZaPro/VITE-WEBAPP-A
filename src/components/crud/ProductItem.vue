@@ -1,14 +1,14 @@
 <template>
   <v-container fluid>
-    <v-row no-gutters class="bg-surface-variant mt-15">
+    <!-- <v-row no-gutters class="bg-surface-variant mt-15">
       <v-col cols="12">
         <v-sheet class="pa-2 ma-2 text-center">
           <h3>ITEM DETAIL id : {{ itemID }}</h3>
         </v-sheet>
       </v-col>
-    </v-row>
+    </v-row> -->
 
-    <v-row no-gutters>
+    <v-row no-gutters class="mt-15">
       <v-col cols="12">
         <v-sheet
           class="pa-4 text-center mx-auto"
@@ -30,39 +30,63 @@
                     <div
                       v-if="isHovering"
                       class="d-flex transition-fast-in-fast-out bg-orange-darken-2 v-card--reveal text-h2"
-                      style="height: 100%"
+                      style="height: 20%"
                     >
-                      $14.99
+                      {{ shop }}
                     </div>
                   </v-expand-transition>
                 </v-img>
 
                 <v-card-text class="pt-6">
                   <div class="font-weight-light text-grey text-h6 mb-2">
-                    For the perfect meal
+                    {{ shop }}
                   </div>
 
                   <h3 class="text-h4 font-weight-light text-orange mb-2">
-                    QW cooking utensils
+                    {{ title }}
                   </h3>
 
                   <div class="font-weight-light text-h6 mb-2">
-                    Our Vintage kitchen utensils delight any chef.<br />
-                    Made of bamboo by hand
+                    {{ detail }}
                   </div>
                 </v-card-text>
 
-                <v-card-actions class="justify-center">
-                  <!-- <v-btn> Detail </v-btn> -->
+                <div class="text-center">
                   <v-btn
+                    append-icon="mdi-account-circle"
+                    prepend-icon="mdi-check-circle"
+                    color="#4CAF50"
+                    @click="clickContact"
+                  >
+                    <template v-slot:prepend>
+                      <v-icon color="#F44336"></v-icon>
+                    </template>
+
+                    ติดต่อ
+
+                    <template v-slot:append>
+                      <v-icon color="#EEFF41"></v-icon>
+                    </template>
+                  </v-btn>
+                </div>
+
+                <v-card-actions class="justify-center">
+                  <v-switch
+                    v-model="show"
+                    color="deep-purple"
+                    :label="`รายการอาหาร`"
+                    hide-details
+                    inset
+                  ></v-switch>
+                  <!-- <v-btn
                     class="text-none text-subtitle-1"
                     color="#5865f2"
                     size="small"
                     variant="flat"
-                    @click="clickItem(id)"
+                    @click="showItem(id)"
                   >
-                    Create Event
-                  </v-btn>
+                    รายการอาหาร
+                  </v-btn> -->
                 </v-card-actions>
               </v-card>
             </v-hover>
@@ -71,7 +95,8 @@
       </v-col>
     </v-row>
 
-    <v-row>
+    <!-- map -->
+    <v-row v-show="!show">
       <v-col cols="12">
         <v-sheet
           class="pa-4 text-center mx-auto"
@@ -85,6 +110,29 @@
       </v-col>
     </v-row>
   </v-container>
+  <!-- product group -->
+  <div v-show="show">
+    <v-row justify="center mb-0 mt-0">
+      <v-col cols="12">
+        <div className="grid-container">
+          <v-card
+            v-for="item in productArr"
+            v-bind="item"
+            :key="item.id"
+            class="card mt-0"
+            elevation="12"
+            rounded="lg"
+            max-width="600"
+            subtitle="Same looks, no anchor"
+            title="Hover and click me"
+            link
+          >
+            <v-img height="300px" :src="item.val" cover></v-img>
+          </v-card>
+        </div>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
@@ -105,6 +153,13 @@ export default {
   },
   data() {
     return {
+      shop: "",
+      title: "",
+      detail: "",
+      show: false,
+      productArr: [],
+      result: [],
+      productGroup: [],
       positionMap: ["13.562704917188565", "100.98740773760905"],
       arrPosMap: [],
       center: "",
@@ -134,33 +189,11 @@ export default {
     this.getGoogleSheetData(this.itemID);
 
     this.map();
-    // this.getToken();
-    // if (!this.currentUser) {
-    //   this.$router.push("/login");
-    // }
-
-    // UserService.getAdminBoard().then(
-    //   (response) => {
-    //     this.content = response.data;
-    //     if (this.itemID) {
-    //       this.getGoogleSheetData(this.itemID);
-    //     }
-    //   },
-    //   (error) => {
-    //     this.content =
-    //       (error.response &&
-    //         error.response.data &&
-    //         error.response.data.message) ||
-    //       error.message ||
-    //       error.toString();
-
-    //     if (error.response && error.response.status === 403) {
-    //       EventBus.dispatch("logout");
-    //     }
-    //   }
-    // );
   },
   methods: {
+    clickContact(id) {
+      console.log("id ", id);
+    },
     map() {
       //13.885093361152009, 100.73856297022726
       this.center = { lat: 40.689247, lng: -74.044502 };
@@ -187,15 +220,35 @@ export default {
 
         this.products.forEach((element) => {
           if (element.id == id) {
+            this.shop = element.DataA;
+            this.title = element.DataB;
+            this.detail = element.DataC;
             this.itemProduct.push(element);
+
+            this.productGroup.push({
+              itemA: element.ProductA,
+              itemB: element.ProductB,
+              itemC: element.ProductC,
+              itemD: element.ProductD,
+              itemE: element.ProductF,
+              itemF: element.ProductG,
+            });
           }
         });
         // console.log("this.itemProduct ", this.itemProduct);
         this.image = this.itemProduct[0].img;
         // console.log("this.Image ", this.itemProduct[0].img);
         this.arrPosMap = [this.itemProduct[0].DataD, this.itemProduct[0].DataE];
+        //convert obj to arr **********************
 
-        // console.log(" this.arrPosMap ", this.arrPosMap);
+        let myKeys = Object.entries(this.productGroup[0]);
+        let myKeysArr = [];
+
+        myKeys.forEach(([key, val]) => {
+          // myKeysArr.push(key);
+          myKeysArr.push({ key, val });
+        });
+        this.productArr = myKeysArr;
       });
     },
   },
@@ -219,14 +272,34 @@ export default {
   padding: 3%;
   /* /test */
 }
-@media (min-width: 400px) {
+@media (min-width: 600px) {
   .grid-container {
     grid-template-columns: repeat(1, 1fr);
   }
 }
-@media (min-width: 600px) {
+@media (min-width: 800px) {
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+.item1 {
+  grid-area: a;
+  align-self: center;
+  justify-self: center;
+}
+/* .grid-container {
+    display: grid;
+    grid-column-gap: 5rem;
+    grid-row-gap: 5rem;
+  }
+  @media (min-width: 576px) {
+    .grid-container {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  } */
+@media (min-width: 992px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 </style>

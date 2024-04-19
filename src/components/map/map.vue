@@ -40,6 +40,7 @@ export default {
   },
   data() {
     return {
+      getPlace_id: "",
       getTargetPlaceName: "",
       itemProduct: [],
       lat: "",
@@ -83,10 +84,10 @@ export default {
     gotoMap() {
       // console.log("lat : ", this.lat);
       // console.log("lng : ", this.lng);
-      const routeData = this.$router.resolve({
-        name: "mapview",
-        query: { lat: this.lat, lng: this.lng },
-      });
+      // const routeData = this.$router.resolve({
+      //   name: "mapview",
+      //   query: { lat: this.lat, lng: this.lng },
+      // });
       //window.open(routeData.href, "_blank");
 
       console.log("place name  before--> ", this.getTargetPlaceName);
@@ -94,24 +95,22 @@ export default {
       // ใส่ + ในช่องว่าง -> getTargetPlaceName
       this.getTargetPlaceName = this.getTargetPlaceName.replace(/ /g, "+");
       //console.log("place name  after--> ", this.getTargetPlaceName);
-
+      console.log("GOTO MAP getPlace_id", this.getPlace_id);
+      console.log("GOTO MAP this.lat", this.lat);
+      console.log("GOTO MAP this.lng", this.lng);
       // template นี้
       //www.google.com/maps/search/?api=1&query=47.5951518%2C-122.3316393&query_place_id=ChIJKxjxuaNqkFQR3CK6O1HNNqY
       // ใช้ reponse นี้ หา place_id
       //https://maps.googleapis.com/maps/api/geocode/json?latlng=13.565903535265374,101.18060283342444&sensor=false&key=AIzaSyCwo24qG8W8yYloJ6dNMKRvD_-fLZw70G4
       window.open(
-        `https://www.google.com/maps/search/?api=1&query=13.565903535265374%2C101.18060283342444&query_place_id=GhIJRWKCGr4hK0AROeQL_45LWUA`,
+        `https://www.google.com/maps/search/?api=1&query=${this.lat}%2C${this.lng}&query_place_id=${this.getPlace_id}`,
         "_blank"
       );
       //
     },
     getDirections(start, end) {
-      // console.log("start--> ", start);
-      // console.log("end--> ", end);
       // กำหนดข้อมูลสำหรับเส้นทาง
       const request = {
-        // origin: this.start,
-        // destination: this.end,
         origin: start,
         destination: end,
         travelMode: "DRIVING",
@@ -146,13 +145,39 @@ export default {
           ).then((_address) => {
             // console.log("_address[0]--> ", _address[0]);
             // console.log("_address[1]--> ", _address[1]);
+            const _current = _address[0];
+            const _destination = _address[1];
+            const _urlPlaceName = _address[2];
 
-            this.getDirections(_address[0], _address[1]);
+            this.getDataFromUrlPlaceName(_urlPlaceName);
+
+            this.getDirections(_current, _destination);
           });
         });
       } else {
         alert("Geolocation is not supported by this browser.");
       }
+    },
+    async getDataFromUrlPlaceName(url) {
+      const send_place_id = [];
+      await axios
+        .get(url)
+        .then(function (response) {
+          //console.log("placename res--> ", response.data.results[0].place_id);
+          const get_place_id = response.data.results[0].place_id;
+          //console.log("get_place_id>>>> ", get_place_id);
+          // this.getPlace_id.push(get_place_id);
+          // console.log("this.getPlace_id>>>> ", this.getPlace_id);
+          send_place_id.push({ get_place_id });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      this.getPlace_id = send_place_id[0].get_place_id;
+      console.log("this.getPlace_id  ", this.getPlace_id);
+
+      return send_place_id[0].get_place_id;
     },
 
     async convertToPlace(latitude, longitude, get_target_lat, get_target_lng) {
@@ -174,14 +199,19 @@ export default {
       );
       const targetPlaceName = await responseTargetPlace.json();
 
-      console.log("responseTargetPlace.json()  ", responseTargetPlace);
+      // console.log("responseTargetPlace.json()  ", responseTargetPlace);
+      // console.log("responseTargetPlace=>url ", responseTargetPlace.url);
 
       const sendCurrentPlaceName =
         currentPlaceName.results[0].formatted_address;
       const sendTargetPlaceName = targetPlaceName.results[0].formatted_address;
       this.getTargetPlaceName = targetPlaceName.results[0].formatted_address;
 
-      return [sendCurrentPlaceName, sendTargetPlaceName];
+      return [
+        sendCurrentPlaceName,
+        sendTargetPlaceName,
+        responseTargetPlace.url,
+      ];
     },
 
     //

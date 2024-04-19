@@ -166,10 +166,11 @@ export default {
               this.profile = profile;
               this.lineUid = this.profile.userId;
               this.lineDisplayName = this.profile.displayName;
-              console.log("this.lineDisplayName--> ", this.lineDisplayName);
+              console.log("this.lineDisplayName-->.> ", this.lineDisplayName);
+              console.log("this.profile.userId-->.> ", this.profile.userId);
 
               // line to register *************
-              if (!this.profile.userId) {
+              if (this.profile.userId) {
                 this.message = "";
                 this.successful = false;
                 this.loading = true;

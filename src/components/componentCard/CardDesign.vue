@@ -6,8 +6,7 @@
 
     <v-card-subtitle> 1,000 miles of wonder </v-card-subtitle>
 
-    <v-card-actions class="justify-center">
-      <!-- <v-btn> Detail </v-btn> -->
+    <!-- <v-card-actions class="justify-center">
       <v-btn
         class="text-none text-subtitle-1"
         color="#5865f2"
@@ -17,7 +16,25 @@
       >
         ดูรายละเอียด
       </v-btn>
-    </v-card-actions>
+    </v-card-actions> -->
+    <div class="text-center">
+      <v-btn
+        append-icon="mdi-account-circle"
+        prepend-icon="mdi-check-circle"
+        color="#2196F3"
+        @click="clickItem(id)"
+      >
+        <template v-slot:prepend>
+          <v-icon color="#F44336"></v-icon>
+        </template>
+
+        ดูรายละเอียด
+
+        <template v-slot:append>
+          <v-icon color="#EEFF41"></v-icon>
+        </template>
+      </v-btn>
+    </div>
 
     <v-card-actions>
       <!-- ---- -->

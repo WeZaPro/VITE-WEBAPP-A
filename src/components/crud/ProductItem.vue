@@ -32,7 +32,9 @@
                       class="d-flex transition-fast-in-fast-out bg-orange-darken-2 v-card--reveal text-h2"
                       style="height: 20%"
                     >
-                      {{ shop }}
+                      <h3 class="text-h4 font-weight-light text-white mb-2">
+                        {{ shop }}
+                      </h3>
                     </div>
                   </v-expand-transition>
                 </v-img>

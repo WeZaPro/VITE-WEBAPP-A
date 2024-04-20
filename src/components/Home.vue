@@ -9,6 +9,32 @@
     </div>
   </div>
 
+  <!-- under bar -->
+  <div class="pa-4 text-center secondary rounded-lg">
+    <v-card class="pa-1" color="light-blue" elevation="16" max-width="100%">
+      <!-- <img class="" src="../../assets/reslogo.png" width="5%" /> -->
+      <div class="example">
+        <img class="example" src="../assets/reslogo.png" width="5%" />
+      </div>
+      <div class="exampleA">
+        <img class="example" src="../assets/reslogo.png" width="15%" />
+      </div>
+
+      <v-card-item>
+        <v-card-title>
+          WEBSITE ศูนย์รวมร้านอาหารดัง ในจังหวัดชลบุรี
+        </v-card-title>
+
+        <v-card-subtitle> รวมแหล่งร้านดัง และของอร่อย มากมาย </v-card-subtitle>
+      </v-card-item>
+
+      <v-card-text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </v-card-text>
+    </v-card>
+  </div>
+
   <v-container fluid>
     <v-row no-gutters class="bg-surface-variant mt-15">
       <v-col>
@@ -269,5 +295,25 @@ div.ex1 {
   background-size: cover;
   height: 50vh;
   width: 100%;
+}
+
+div.example {
+  padding: 0px;
+}
+
+@media screen and (max-width: 1026px) {
+  div.example {
+    display: none;
+  }
+}
+
+div.exampleA {
+  padding: 0px;
+}
+
+@media screen and (min-width: 1026px) {
+  div.exampleA {
+    display: none;
+  }
 }
 </style>

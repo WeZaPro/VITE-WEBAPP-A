@@ -35,43 +35,224 @@
     </v-card>
   </div>
 
-  <v-container fluid>
-    <v-row no-gutters class="bg-surface-variant mt-15">
-      <v-col>
-        <v-sheet class="pa-2 ma-2"> .v-col-auto </v-sheet>
+  <!-- ------ -->
+  <v-container fluid class="">
+    <v-row no-gutters>
+      <!-- ##### -->
+      <v-col cols="">
+        <v-sheet class="pa-2 ma-2">
+          <v-card class="mx-auto" max-width="100%">
+            <v-img
+              height="200px"
+              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+              cover
+            ></v-img>
+
+            <v-card-title> Top western road trips </v-card-title>
+
+            <v-card-subtitle> 1,000 miles of wonder </v-card-subtitle>
+
+            <v-card-actions>
+              <v-btn color="orange-lighten-2" text="Explore"></v-btn>
+
+              <v-spacer></v-spacer>
+
+              <v-btn
+                :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+                @click="showA = !showA"
+              ></v-btn>
+            </v-card-actions>
+
+            <v-expand-transition>
+              <div v-show="showA">
+                <v-divider></v-divider>
+
+                <v-card-text>
+                  I'm a thing. But, like most politicians, he promised more than
+                  he could deliver. You won't have time for sleeping, soldier,
+                  not with all the bed making you'll be doing. Then we'll go
+                  with that data file! Hey, you add a one and two zeros to that
+                  or we walk! You're going to do his laundry? I've got to find a
+                  way to escape.
+                </v-card-text>
+              </div>
+            </v-expand-transition>
+          </v-card>
+        </v-sheet>
       </v-col>
-      <v-col>
-        <v-sheet class="pa-2 ma-2"> .v-col-auto </v-sheet>
+      <!-- ##### -->
+      <v-col cols="">
+        <v-sheet class="pa-2 ma-2">
+          <v-card class="mx-auto" max-width="100%">
+            <v-img
+              height="200px"
+              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+              cover
+            ></v-img>
+
+            <v-card-title> Top western road trips </v-card-title>
+
+            <v-card-subtitle> 1,000 miles of wonder </v-card-subtitle>
+
+            <v-card-actions>
+              <v-btn color="orange-lighten-2" text="Explore"></v-btn>
+
+              <v-spacer></v-spacer>
+
+              <v-btn
+                :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+                @click="show = !show"
+              ></v-btn>
+            </v-card-actions>
+
+            <v-expand-transition>
+              <div v-show="show">
+                <v-divider></v-divider>
+
+                <v-card-text>
+                  I'm a thing. But, like most politicians, he promised more than
+                  he could deliver. You won't have time for sleeping, soldier,
+                  not with all the bed making you'll be doing. Then we'll go
+                  with that data file! Hey, you add a one and two zeros to that
+                  or we walk! You're going to do his laundry? I've got to find a
+                  way to escape.
+                </v-card-text>
+              </div>
+            </v-expand-transition>
+          </v-card>
+        </v-sheet>
       </v-col>
+      <!-- ##### -->
     </v-row>
 
-    <v-row no-gutters class="bg-surface-variant mt-5">
+    <v-row no-gutters class="grid-container-2Up">
+      <!-- ##### -->
       <v-col>
-        <v-sheet class="pa-2 ma-2"> .v-col-auto </v-sheet>
+        <v-sheet class="pa-2 ma-2">
+          <v-card class="mx-auto" max-width="100%">
+            <v-container fluid>
+              <v-row dense>
+                <v-col
+                  v-for="card in cards"
+                  :key="card.title"
+                  :cols="card.flex"
+                >
+                  <v-card>
+                    <v-img
+                      :src="card.src"
+                      class="align-end"
+                      gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                      height="200px"
+                      cover
+                    >
+                      <v-card-title
+                        class="text-white"
+                        :v-text="card.title"
+                      ></v-card-title>
+                    </v-img>
+
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+
+                      <v-btn
+                        color="medium-emphasis"
+                        icon="mdi-heart"
+                        size="small"
+                      ></v-btn>
+
+                      <v-btn
+                        color="medium-emphasis"
+                        icon="mdi-bookmark"
+                        size="small"
+                      ></v-btn>
+
+                      <v-btn
+                        color="medium-emphasis"
+                        icon="mdi-share-variant"
+                        size="small"
+                      ></v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card>
+        </v-sheet>
       </v-col>
+      <!-- ##### -->
+      <!-- ##### -->
       <v-col>
-        <v-sheet class="pa-2 ma-2"> .v-col-auto </v-sheet>
+        <v-sheet class="pa-2 ma-2">
+          <v-card class="mx-auto" max-width="100%">
+            <v-container fluid>
+              <v-row dense>
+                <v-col
+                  v-for="card in cards"
+                  :key="card.title"
+                  :cols="card.flex"
+                >
+                  <v-card>
+                    <v-img
+                      :src="card.src"
+                      class="align-end"
+                      gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                      height="200px"
+                      cover
+                    >
+                      <v-card-title
+                        class="text-white"
+                        :v-text="card.title"
+                      ></v-card-title>
+                    </v-img>
+
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+
+                      <v-btn
+                        color="medium-emphasis"
+                        icon="mdi-heart"
+                        size="small"
+                      ></v-btn>
+
+                      <v-btn
+                        color="medium-emphasis"
+                        icon="mdi-bookmark"
+                        size="small"
+                      ></v-btn>
+
+                      <v-btn
+                        color="medium-emphasis"
+                        icon="mdi-share-variant"
+                        size="small"
+                      ></v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card>
+        </v-sheet>
       </v-col>
-      <v-col>
-        <v-sheet class="pa-2 ma-2"> .v-col-auto </v-sheet>
-      </v-col>
+      <!-- ##### -->
     </v-row>
 
-    <v-row no-gutters class="bg-surface-variant mt-5">
+    <!-- <v-row no-gutters>
       <v-col cols="2">
-        <v-sheet class="pa-2 ma-2"> .v-col-2 </v-sheet>
+        <v-sheet class="pa-2 ma-2"> </v-sheet>
       </v-col>
       <v-col>
-        <v-sheet class="pa-2 ma-2"> .v-col-auto </v-sheet>
+        <v-sheet class="pa-2 ma-2"> </v-sheet>
       </v-col>
-    </v-row>
+    </v-row> -->
   </v-container>
 
-  <div class="container mt-10">
+  <!-- ------ -->
+
+  <!-- <div class="container mt-10">
     <header class="jumbotron">
       <h3>{{ content }}</h3>
     </header>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -88,8 +269,28 @@ export default {
   },
   data() {
     return {
+      show: false,
+      showA: false,
+      //
       mobileView: true,
       content: "",
+      cards: [
+        {
+          title: "Pre-fab homes",
+          src: "https://cdn.vuetifyjs.com/images/cards/house.jpg",
+          flex: 12,
+        },
+        {
+          title: "Favorite road trips",
+          src: "https://cdn.vuetifyjs.com/images/cards/road.jpg",
+          flex: 6,
+        },
+        {
+          title: "Best airlines",
+          src: "https://cdn.vuetifyjs.com/images/cards/plane.jpg",
+          flex: 6,
+        },
+      ],
     };
   },
   created() {
@@ -314,6 +515,25 @@ div.exampleA {
 @media screen and (min-width: 1026px) {
   div.exampleA {
     display: none;
+  }
+}
+
+/* GRID CONTAINER 2UP*/
+.grid-container-2Up {
+  display: grid;
+  grid-column-gap: 0.8rem;
+  grid-row-gap: 0.8rem;
+  padding: 3%;
+  /* /test */
+}
+@media (min-width: 300px) {
+  .grid-container-2Up {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media (min-width: 600px) {
+  .grid-container-2Up {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 </style>

@@ -61,7 +61,7 @@
                     @click="clickContact"
                   >
                     <template v-slot:prepend>
-                      <v-icon color="#F44336"></v-icon>
+                      <v-icon color="#CDDC39"></v-icon>
                     </template>
 
                     ติดต่อ

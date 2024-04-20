@@ -16,7 +16,7 @@
   </div>
   <!-- under bar -------------------------->
 
-  <div class="pa-4 text-center secondary rounded-lg">
+  <div class="pa-3 text-center secondary rounded-lg">
     <v-card class="pa-1" color="light-blue" elevation="16" max-width="100%">
       <!-- <img class="" src="../../assets/reslogo.png" width="5%" /> -->
       <div class="example">
@@ -43,8 +43,8 @@
 
   <!-- under bar ------end-------------------->
   <!-- ------ -->
-  <div>
-    <v-row justify="center mb-5">
+  <div class="mt-0">
+    <v-row justify="center mb-2">
       <v-col cols="12">
         <div className=" grid-container">
           <CardDesignB
@@ -224,7 +224,7 @@ export default {
 
 .rounded-card {
   margin-top: 10% !important;
-  border-radius: 20px;
+  border-radius: 30px;
 }
 
 div.ex1 {

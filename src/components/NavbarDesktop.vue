@@ -5,33 +5,24 @@
         <!-- <v-system-bar color="deep-purple darken-3"></v-system-bar> -->
 
         <v-app-bar color="primary" prominent>
-          <!-- <v-app-bar-nav-icon
-            variant="text"
-            @click.stop="drawer = !drawer"
-          ></v-app-bar-nav-icon>
-  
-          <v-toolbar-title>My files</v-toolbar-title> -->
-
           <v-spacer></v-spacer>
           <div class="ma-3"></div>
           <!-- --- -->
           <div class="mr-3">
-            <router-link to="/home" class="nav-link">
-              <img class="mr-3" src="../assets/home2.png" height="40" />
-            </router-link>
+            <img
+              class="mr-3"
+              src="../assets/home2.png"
+              height="40"
+              @click.stop="drawer = !drawer"
+            />
           </div>
           <div id="container">
-            <!-- <div
-              class="navbar-nav mr-3 SelectedTile"
-              active-class="SelectedTile-active"
-            > -->
-            <div class="mr-3 SelectedTile" active-class="SelectedTile-active">
-              <router-link to="/" class="nav-link">
-                <font-awesome-icon icon="home" /> Home
-              </router-link>
-            </div>
+            <!-- <div class="mr-3 SelectedTile" active-class="SelectedTile-active">
+              <font-awesome-icon icon="home" @click.stop="drawer = !drawer" />
+              Home
+            </div> -->
 
-            <div v-if="!currentUser" class="mr-3 SelectedTile">
+            <!-- <div v-if="!currentUser" class="mr-3 SelectedTile">
               <router-link to="/register" class="nav-link">
                 <font-awesome-icon icon="user-plus" /> Sign Up
               </router-link>
@@ -41,62 +32,55 @@
               <router-link to="/login" class="nav-link">
                 <font-awesome-icon icon="sign-in-alt" /> Login
               </router-link>
-            </div>
+            </div> -->
 
-            <div v-if="currentUser" class="mr-3 SelectedTile">
+            <!-- <div v-if="currentUser" class="mr-3 SelectedTile">
               <router-link to="/profile" class="nav-link">
                 <font-awesome-icon icon="user" />
                 {{ currentUser.username }}
               </router-link>
-            </div>
+            </div> -->
 
-            <div v-if="showAdminBoard" class="mr-3 SelectedTile">
+            <!-- <div v-if="showAdminBoard" class="mr-3 SelectedTile">
               <router-link to="/create" class="nav-link">
-                <!-- <font-awesome-icon icon="user" /> -->
-                <!-- <i class="fab fa-medium"></i> -->
-                <!-- <i class="far fa-envelope"></i> -->
-                <!-- <i class="fa-solid fa-pen"></i> -->
-                <i class="fa-solid fa-plus"></i>
+               <i class="fa-solid fa-plus"></i>
                 Add Data</router-link
               >
-            </div>
-            <div v-if="showAdminBoard" class="mr-3 SelectedTile">
+            </div> -->
+            <!-- <div v-if="showAdminBoard" class="mr-3 SelectedTile">
               <router-link to="/setproduct" class="nav-link">
-                <!-- <font-awesome-icon icon="user" /> -->
-                <!-- <i class="fab fa-medium"></i> -->
-                <!-- <i class="far fa-envelope"></i> -->
-                <!-- <i class="fa-solid fa-pen"></i> -->
-                <!-- <i class="fa-solid fa-plus"></i> -->
-                <i class="fa fa-pencil" aria-hidden="true"></i>
+               <i class="fa fa-pencil" aria-hidden="true"></i>
                 Set Product</router-link
+              >
+            </div> -->
+
+            <div class="mr-3 SelectedTile">
+              <router-link to="/" class="nav-link">
+                <i class="fa fa-home" aria-hidden="true"></i>
+                Home</router-link
               >
             </div>
 
             <div class="mr-3 SelectedTile">
               <router-link to="/products" class="nav-link">
-                <!-- <font-awesome-icon icon="user" /> -->
-                <!-- <i class="fab fa-medium"></i> -->
-                <!-- <i class="far fa-envelope"></i> -->
-                <!-- <i class="fa-solid fa-pen"></i> -->
-                <!-- <i class="fa-solid fa-plus"></i> -->
                 <i class="fa fa-cube" aria-hidden="true"></i>
                 Products</router-link
               >
             </div>
 
-            <div v-if="showAdminBoard" class="mr-3 SelectedTile">
+            <!-- <div v-if="showAdminBoard" class="mr-3 SelectedTile">
               <router-link to="/gantt" class="nav-link">
                 <i class="fa fa-line-chart" aria-hidden="true"></i>
                 Gantt Chart
               </router-link>
-            </div>
+            </div> -->
 
-            <div class="mr-3 SelectedTile">
+            <!-- <div class="mr-3 SelectedTile">
               <router-link to="/dashboard" class="nav-link">
                 <font-awesome-icon icon="sign-in-alt" />
                 Dashboard
               </router-link>
-            </div>
+            </div> -->
 
             <!-- -show-- -->
 
@@ -114,9 +98,104 @@
           </div>
         </v-app-bar>
 
-        <v-navigation-drawer v-model="drawer" location="bottom" temporary>
-          <v-list :items="items"></v-list>
+        <!-- drawer -------------------------------->
+        <v-navigation-drawer
+          v-if="drawer"
+          v-model="drawer"
+          class="pb-0"
+          floating
+          hide-overlay
+          stateless
+          width="250"
+          color="#263238"
+        >
+          <v-list
+            class="SelectedTile"
+            active-class="SelectedTile-active"
+            :items="items"
+          >
+            <div
+              v-if="currentUser"
+              class="navbar-nav ml-5 text-left SelectedTile"
+            >
+              <router-link to="/profile" class="nav-link">
+                <font-awesome-icon icon="user" />
+                {{ currentUser.username }}
+              </router-link>
+            </div>
+            <div
+              v-if="showAdminBoard"
+              class="navbar-nav ml-5 text-left SelectedTile"
+            >
+              <router-link to="/create" class="nav-link">
+                <i class="fa-solid fa-plus"></i>
+                Add Data</router-link
+              >
+            </div>
+            <div
+              v-if="showAdminBoard"
+              class="navbar-nav ml-5 text-left SelectedTile"
+            >
+              <router-link to="/setproduct" class="nav-link">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                Set Product</router-link
+              >
+            </div>
+
+            <div class="navbar-nav ml-5 text-left SelectedTile">
+              <router-link to="/products" class="nav-link">
+                <i class="fa fa-cube" aria-hidden="true"></i>
+                Products</router-link
+              >
+            </div>
+
+            <div
+              v-if="showAdminBoard"
+              class="navbar-nav ml-5 text-left SelectedTile"
+            >
+              <router-link to="/gantt" class="nav-link">
+                <i class="fa fa-line-chart" aria-hidden="true"></i>
+                Gantt Chart
+              </router-link>
+            </div>
+
+            <div class="navbar-nav ml-5 text-left SelectedTile">
+              <router-link to="/dashboard" class="nav-link">
+                <font-awesome-icon icon="sign-in-alt" />
+                Dashboard
+              </router-link>
+            </div>
+
+            <div
+              v-if="!currentUser"
+              class="navbar-nav ml-5 text-left SelectedTile"
+            >
+              <router-link to="/register" class="nav-link">
+                <font-awesome-icon icon="user-plus" /> Sign Up
+              </router-link>
+            </div>
+            <div
+              v-if="!currentUser"
+              class="navbar-nav ml-5 text-left SelectedTile"
+            >
+              <router-link to="/login" class="nav-link">
+                <font-awesome-icon icon="sign-in-alt" /> Login
+              </router-link>
+            </div>
+            <div
+              v-if="currentUser"
+              class="navbar-nav ml-5 text-left SelectedTile"
+            >
+              <a class="nav-link" @click="logOut">
+                <font-awesome-icon icon="sign-out-alt" /> LogOut
+              </a>
+            </div>
+          </v-list>
         </v-navigation-drawer>
+
+        <!-- <v-navigation-drawer v-model="drawer" location="bottom" temporary>
+          <v-list :items="items"></v-list>
+        </v-navigation-drawer> -->
 
         <!-- <v-main style="height: 500px">
           <v-card-text>
@@ -207,7 +286,7 @@ export default {
     },
     logOut() {
       this.$store.dispatch("auth/logout");
-      this.$router.push("/login");
+      this.$router.push("/");
     },
   },
   mounted() {

@@ -128,12 +128,12 @@ export default {
       const { cookies } = useCookies();
       cookies.set("acylic_cookies_name", name);
       cookies.set("acylic_cookies_phone", phone);
-      return true;
+      // return true;
       //document.cookie = "key1 = value1;key2 = value2;expires = date";
     },
     getFormValues() {
-      var chkPhone = this.checkPhoneNumber(this.phoneNumber);
-      console.log("chkPhone >>. ", chkPhone);
+      //var chkPhone = this.checkPhoneNumber(this.phoneNumber);
+      //console.log("chkPhone >>. ", chkPhone);
       const CLIENT_ID = import.meta.env.VITE_LIFF_CLIENT_ID_FORM;
       const REDIRECT_URL = import.meta.env.VITE_LIFF_REDIRECT_FORM;
       const VERTIFY = `hello`;
@@ -142,13 +142,17 @@ export default {
       if (this.username === "" || this.phoneNumber === "") {
         alert("กรถณาใส่ข้อมูลให้ครบ");
       } else {
-        if (chkPhone === true) {
-          let set_cookies = this.setCookiesData(this.username, this.phone);
-          console.log("set_cookies---> ", set_cookies);
-          if (set_cookies === true) {
-            window.open(url, "_blank");
-          }
+        var phoneNumberFormat = this.checkPhoneNumber(this.phoneNumber);
+        console.log("phoneNumberFormat ", phoneNumberFormat);
+        if (phoneNumberFormat) {
+          this.setCookiesData(this.username, phoneNumberFormat);
+          window.open(url, "_blank");
         }
+
+        // console.log("set_cookies---> ", set_cookies);
+        // if (set_cookies === true) {
+        //   window.open(url, "_blank");
+        // }
       }
 
       // goto line login

@@ -38,7 +38,7 @@ export default {
 };
 </script>
 <style scoped>
-::v-deep .v-data-footer {
+/* ::v-deep .v-data-footer {
   padding: 0 100px;
-}
+} */
 </style>

@@ -2,30 +2,75 @@
   <v-container fluid class="hero"> </v-container>
 </template> -->
 <template>
-  <div class="containerL">
-    <!-- <v-row no-gutters>
-      <v-img max-height="300" :src="banner" cover></v-img>
-    </v-row> -->
-    <!-- <v-parallax height="300" :src="banner"></v-parallax> -->
-    <v-parallax height="300" :src="banner">
+  <div class="containerL" height="500">
+    <!-- ------ -->
+
+    <v-parallax :src="banner">
       <div
         class="d-flex flex-column fill-height justify-center align-center text-white"
       >
-        <h1 class="text-h4 font-weight-thin mb-4">Diners</h1>
-        <h4 class="subheading">Restaurants near me!</h4>
+        <!-- <h1 class="text-h4 font-weight-thin mb-4">Banner Product</h1>
+        <h4 class="subheading">Restaurants near me!</h4> -->
+
+        <p class="p1"><i class="fa fa-gift"></i> ลงทะเบียนรับส่วนลด</p>
+        <div>
+          <v-btn class="mt-0" color="blue" @click="openForm($event)" block
+            ><i class="fa fa-edit"></i> ลงทะเบียน</v-btn
+          >
+        </div>
+        <div v-show="showDiv" class="form-width mt-3">
+          <!-- <v-sheet class="mx-auto" width="300"> -->
+          <v-form @submit.prevent="getFormValues">
+            <v-text-field
+              class="my-input"
+              solo
+              filled
+              rounded
+              v-model="username"
+              label="ชื่อ-นามสกุล"
+            ></v-text-field>
+
+            <v-text-field
+              class="my-input"
+              solo
+              filled
+              rounded
+              v-model="phone"
+              label="เบอร์โทรศัพท์"
+            ></v-text-field>
+
+            <v-btn class="mt-0" color="blue" type="submit" block
+              ><i class="fa fa-check" aria-hidden="true"></i> ส่งข้อมูล</v-btn
+            >
+          </v-form>
+          <!-- </v-sheet> -->
+        </div>
       </div>
+
+      <div></div>
     </v-parallax>
   </div>
 </template>
 <script>
 import axios from "axios";
 export default {
-  name: "Banner",
+  name: "App",
+  components: {},
 
   components: {},
   data() {
     return {
       banner: "",
+      username: "",
+      phone: "",
+      showDiv: false,
+      // rules: [
+      //   (value) => {
+      //     if (value) return true;
+
+      //     return "You must enter a first name.";
+      //   },
+      // ],
     };
   },
   created() {},
@@ -35,6 +80,26 @@ export default {
     this.getGoogleSheetDataBanner();
   },
   methods: {
+    getFormValues() {
+      this.username = this.username;
+      this.phone = this.phone;
+      //
+      const CLIENT_ID = import.meta.env.VITE_LIFF_CLIENT_ID_FORM;
+      const REDIRECT_URL = import.meta.env.VITE_LIFF_REDIRECT_FORM;
+
+      const VERTIFY = `hello`;
+      // const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&state=${VERTIFY}&scope=profile%20openid%20email&initial_amr_display=lineqr`;
+      const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&state=${VERTIFY}&scope=profile%20openid%20email&initial_amr_display=lineqr`;
+      window.open(url, "_blank");
+
+      //
+      // let liffUrl = `https://liff.line.me/1657499945-BMr9RMVe/?username=${this.username}&phone=${this.phone}`;
+      // window.open(liffUrl, "_blank");
+    },
+    openForm(e) {
+      console.log("e---> ", e);
+      this.showDiv = !this.showDiv;
+    },
     async getGoogleSheetDataBanner() {
       console.log("getGoogleSheetDataBanner--> ");
       // this.HEADER = {
@@ -61,5 +126,63 @@ export default {
   background-size: cover;
   height: 50vh;
   width: 100%;
+}
+
+/* form */
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* text-align: center; */
+  color: #2c3e50;
+  margin-top: 10px;
+}
+.mt-required label.v-label::after {
+  content: "*";
+  color: red;
+}
+
+/* overlay */
+/* .tinted-image {
+  width: 100%;
+  height: 60vh;
+
+  background: linear-gradient(
+      rgba(17, 0, 255, 0.619),
+      rgba(315, 212, 707, 0.45)
+    ),
+    url(https://drive.google.com/thumbnail?sz=w1000&id=1I79uOcDGIRHn584DpmcxQ_UgRr92g4hH);
+  background-repeat: no-repeat;
+  background-size: cover;
+} */
+
+.my-input.v-input .v-input__slot {
+  /* border-radius: 100px; */
+  /* background: transparent !important; */
+
+  border-color: transparent !important;
+  width: 400px;
+}
+
+.text-field-transparent .v-input__slot {
+  /* background: transparent !important; */
+
+  border-color: transparent !important;
+}
+
+.v-text-field .v-input__control .v-input__slot {
+  min-height: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  color: "white";
+}
+
+.form-width {
+  width: 300px;
+}
+
+.p1 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
 }
 </style>

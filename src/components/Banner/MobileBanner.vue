@@ -1,17 +1,10 @@
-<!-- <template>
-  <v-container fluid class="hero"> </v-container>
-</template> -->
 <template>
   <div class="containerL">
-    <!-- <v-row no-gutters>
-      <v-img max-height="300" :src="banner" cover></v-img>
-    </v-row> -->
-    <!-- <v-parallax height="300" :src="banner"></v-parallax> -->
-    <v-parallax height="300" :src="banner">
+    <v-parallax height="500" :src="banner">
       <div
         class="d-flex flex-column fill-height justify-center align-center text-white"
       >
-        <h1 class="text-h4 font-weight-thin mb-4">Diners</h1>
+        <h1 class="text-h4 font-weight-thin mb-4">Mobile Banner</h1>
         <h4 class="subheading">Restaurants near me!</h4>
       </div>
     </v-parallax>
@@ -27,6 +20,7 @@ export default {
   data() {
     return {
       banner: "",
+      overlay: true,
     };
   },
   created() {},
@@ -44,7 +38,7 @@ export default {
 
       const url = import.meta.env.VITE_API_MONGO + "/admin/products";
       await axios.get(url).then((res) => {
-        this.banner = res.data.data[0].DesktopBanner;
+        this.banner = res.data.data[0].MobileBanner;
         console.log("this.banner DesktopBanner--> ", this.banner);
 
         // console.log("this.products ", this.products);

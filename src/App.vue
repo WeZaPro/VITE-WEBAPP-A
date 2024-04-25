@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <NavigationMobile />
-    <div class="content" :class="{ open: showNav }">
+    <!-- <div class="content" :class="{ open: showNav }"> -->
+    <div class="content">
       <div class="top-bar">
         <div id="navigation-icon" v-if="mobileView" @click="showNav = !showNav">
           <i class="fas fa-bars"></i>

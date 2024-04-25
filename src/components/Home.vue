@@ -1,10 +1,19 @@
 <template>
   <!-- /// -->
-  <div id="app">
-    <Banner v-if="mobileView" />
-    <div class="content" :class="{ open: showNav }">
+  <!-- <div id="app">
+    <Banner v-if="!mobileView" />
+    <div class="content">
       <div class="top-bar">
-        <MobileBanner v-if="!mobileView" />
+        <MobileBanner v-if="mobileView" />
+      </div>
+    </div>
+  </div> -->
+
+  <div id="app">
+    <MobileProductBanner v-if="mobileView" />
+    <div class="content">
+      <div class="top-bar">
+        <BannerProduct v-if="!mobileView" />
       </div>
     </div>
   </div>
@@ -81,6 +90,7 @@
         </v-sheet>
       </v-col>
       <!-- ##### -->
+
       <v-col cols="">
         <v-sheet class="pa-2 ma-2">
           <v-card class="mx-auto" max-width="100%">
@@ -124,6 +134,7 @@
       </v-col>
       <!-- ##### -->
     </v-row>
+    <!-- ========================================== -->
 
     <v-row no-gutters class="grid-container-2Up">
       <!-- ##### -->
@@ -248,27 +259,35 @@
 
   <!-- ------ -->
 
-  <!-- <div class="container mt-10">
-    <header class="jumbotron">
-      <h3>{{ content }}</h3>
-    </header>
-  </div> -->
+  <!-- test scroll -->
 </template>
 
 <script>
 // import UserService from "../services/user.service";
+// import gsap from "gsap";
+// import ScrollTrigger from "gsap/ScrollTrigger";
 
+// gsap.registerPlugin(ScrollTrigger);
+//
 import MobileBanner from "../components/Banner/MobileBanner.vue";
 import Banner from "../components/Banner/Banner.vue";
+
+import BannerProduct from "../components/Banner/BannerProduct.vue";
+import MobileProductBanner from "../components/Banner/MobileProductBanner.vue";
 
 export default {
   name: "Home",
   components: {
     MobileBanner,
     Banner,
+    BannerProduct,
+    MobileProductBanner,
   },
   data() {
     return {
+      //
+
+      //
       show: false,
       showA: false,
       //
@@ -296,27 +315,30 @@ export default {
   created() {
     this.handleView();
     window.addEventListener("resize", this.handleView);
+    // this.handleView();
+    // window.addEventListener("resize", this.handleView);
+    // window.addEventListener("scroll", this.handleScroll);
   },
-  destroyed() {},
+  destroyed() {
+    //window.removeEventListener("scroll", this.handleScroll);
+  },
+  onBeforeMount() {},
+
   methods: {
+    // handleScroll(event) {
+    //   console.log("event ======> ", event);
+    //   if (window.scrollY > 980 && window.scrollY < 1000) {
+    //     //alert("window.scrollY");
+    //     console.log("check ====================> ", window.scrollY);
+    //   }
+    //   console.log(window.scrollY);
+    // },
     handleView() {
       this.mobileView = window.innerWidth <= 800;
     },
   },
   mounted() {
-    // UserService.getPublicContent().then(
-    //   (response) => {
-    //     this.content = response.data;
-    //   },
-    //   (error) => {
-    //     this.content =
-    //       (error.response &&
-    //         error.response.data &&
-    //         error.response.data.message) ||
-    //       error.message ||
-    //       error.toString();
-    //   }
-    // );
+    // window.addEventListener("scroll", this.handleScroll);
   },
 };
 </script>
@@ -390,7 +412,7 @@ export default {
 
 .rounded-card {
   margin-top: 10% !important;
-  border-radius: 20px;
+  border-radius: 30px;
 }
 
 div.ex1 {
@@ -432,12 +454,12 @@ div.ex1 {
   padding: 3%;
   /* /test */
 }
-@media (min-width: 400px) {
+@media (min-width: 600px) {
   .grid-container {
     grid-template-columns: repeat(1, 1fr);
   }
 }
-@media (min-width: 600px) {
+@media (min-width: 800px) {
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -492,7 +514,7 @@ div.ex1 {
 }
 
 .hero {
-  background: url("../assets//banner1.png");
+  background: url("../../assets/banner1.png");
   background-size: cover;
   height: 50vh;
   width: 100%;
@@ -515,25 +537,6 @@ div.exampleA {
 @media screen and (min-width: 1026px) {
   div.exampleA {
     display: none;
-  }
-}
-
-/* GRID CONTAINER 2UP*/
-.grid-container-2Up {
-  display: grid;
-  grid-column-gap: 0.8rem;
-  grid-row-gap: 0.8rem;
-  padding: 3%;
-  /* /test */
-}
-@media (min-width: 300px) {
-  .grid-container-2Up {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-@media (min-width: 600px) {
-  .grid-container-2Up {
-    grid-template-columns: repeat(2, 1fr);
   }
 }
 </style>

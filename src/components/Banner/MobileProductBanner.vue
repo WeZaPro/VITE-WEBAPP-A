@@ -1,14 +1,11 @@
 <template>
   <div class="containerL">
-    <!-- <v-row no-gutters>
-      <v-img max-height="800" :src="banner" cover></v-img>
-    </v-row> -->
-    <!-- <v-parallax height="800" :src="banner"></v-parallax> -->
     <v-parallax height="800" :src="banner">
       <div
         class="d-flex flex-column fill-height justify-center align-center text-white"
       >
-        <h1 class="text-h4 font-weight-thin mb-4">Diners</h1>
+        <h1 class="text-h4 font-weight-thin mb-4">Mobile ProductBanner</h1>
+
         <h4 class="subheading">Restaurants near me!</h4>
       </div>
     </v-parallax>
@@ -24,6 +21,7 @@ export default {
   data() {
     return {
       banner: "",
+      overlay: true,
     };
   },
   created() {},
@@ -63,4 +61,5 @@ export default {
   height: 50vh;
   width: 100%;
 }
+/* overLay */
 </style>

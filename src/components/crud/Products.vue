@@ -8,7 +8,8 @@
 
   <div id="app">
     <MobileProductBanner v-if="mobileView" />
-    <div class="content" :class="{ open: showNav }">
+    <!-- <div class="content" :class="{ open: showNav }"> -->
+    <div class="content">
       <div class="top-bar">
         <BannerProduct v-if="!mobileView" />
       </div>
@@ -62,6 +63,9 @@
 </template>
 
 <script>
+//init scroll
+import debounce from "lodash/debounce";
+//
 import axios from "axios";
 import TokenService from "../../services/token.service";
 import Card from "../componentCard/Card.vue";
@@ -109,7 +113,15 @@ export default {
     this.testApi();
     this.handleView();
     window.addEventListener("resize", this.handleView);
+
+    //
+    // window.addEventListener("scroll", this.handleScroll);
   },
+
+  unmounted() {
+    // window.removeEventListener("scroll", this.handleScroll);
+  },
+
   destroyed() {},
   computed: {
     currentUser() {
@@ -122,8 +134,30 @@ export default {
     //   this.$router.push("/login");
     // }
     // this.getGoogleSheetData();
+
+    // scroll event
+    this.handleDebouncedScroll = debounce(this.handleScroll, 100);
+    window.addEventListener("scroll", this.handleDebouncedScroll);
+  },
+  beforeDestroy() {
+    // I switched the example from `destroyed` to `beforeDestroy`
+    // to exercise your mind a bit. This lifecycle method works too.
+    window.removeEventListener("scroll", this.handleDebouncedScroll);
   },
   methods: {
+    handleScroll(event) {
+      // Any code to be executed when the window is scrolled
+      this.isUserScrolling = window.scrollY > 0;
+      console.log("calling handleScroll");
+      const _second = window.scrollY / 1000;
+      // if (window.scrollY > 1000) {
+      //   alert("Scroll = " + _second + " s ");
+      // }
+
+      console.log("event --> ", event);
+      console.log("this.isUserScrolling --> ", this.isUserScrolling);
+      console.log("window.scrollY --> ", window.scrollY);
+    },
     handleView() {
       this.mobileView = window.innerWidth <= 800;
     },

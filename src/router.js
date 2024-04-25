@@ -17,6 +17,8 @@ const ProductItem = () => import("./components/crud/ProductItem.vue");
 const LineUser = () => import("./components/lineLogin/LineUser.vue");
 const Dashboard = () => import("./components/Chart/index.vue");
 
+const LiffForm = () => import("./components/Forms/LiffForm.vue");
+
 const routes = [
   {
     path: "/",
@@ -89,6 +91,12 @@ const routes = [
     name: "lineuser",
     // lazy-loaded
     component: LineUser,
+  },
+  {
+    path: "/liffform",
+    name: "liffform",
+    // lazy-loaded
+    component: LiffForm,
   },
   {
     path: "/admin",

@@ -29,6 +29,7 @@
     "vee-validate": "^4.12.6",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
+    "vue3-cookies": "^1.0.6",
     "vue3-google-map": "^0.20.0",
     "vuetify": "^3.5.15",
     "vuex": "^4.1.0",

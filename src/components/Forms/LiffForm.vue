@@ -50,6 +50,7 @@
 
 <script>
 import liff from "@line/liff";
+import { useCookies } from "vue3-cookies";
 
 import axios from "axios";
 export default {
@@ -59,6 +60,8 @@ export default {
   },
   data() {
     return {
+      getCookies_username: "",
+      getCookies_phone: "",
       successful: false,
       loading: false,
       message: "",
@@ -88,6 +91,7 @@ export default {
   },
   mounted() {
     console.log("MOUNT-->");
+    this.getCookies();
 
     //run liff
     this.liffAdd();
@@ -97,6 +101,13 @@ export default {
     //this.saveData(data)
   },
   methods: {
+    getCookies() {
+      const { cookies } = useCookies();
+      this.getCookies_username = cookies.get("acylic_cookies_name");
+      this.getCookies_phone = cookies.get("acylic_cookies_phone");
+      console.log("this.getCookies_username-->", this.getCookies_username);
+      console.log("this.getCookies_phone-->", this.getCookies_phone);
+    },
     async lineLogin() {
       console.log("this.profile.userId--> ", this.profile.userId);
 

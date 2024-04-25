@@ -53,6 +53,7 @@
 </template>
 <script>
 import axios from "axios";
+import { useCookies } from "vue3-cookies";
 export default {
   name: "App",
   components: {},
@@ -60,6 +61,8 @@ export default {
   components: {},
   data() {
     return {
+      setCookies: "",
+      //getCookies: "",
       banner: "",
       username: "",
       phone: "",
@@ -80,9 +83,23 @@ export default {
     this.getGoogleSheetDataBanner();
   },
   methods: {
+    setCookies(name, phone) {
+      const { cookies } = useCookies();
+      cookies.set("acylic_cookies_name", name);
+      cookies.set("acylic_cookies_phone", phone);
+    },
+    // getCookies() {
+    //   const { cookies } = useCookies();
+    //   this.getCookies = cookies.get("acylic_cookies");
+    //   console.log("this.getCookies-->", this.getCookies);
+    // },
     getFormValues() {
       this.username = this.username;
       this.phone = this.phone;
+
+      // save data to cookies
+      this.setCookies(this.username, this.phone);
+      // goto line login
       //
       const CLIENT_ID = import.meta.env.VITE_LIFF_CLIENT_ID_FORM;
       const REDIRECT_URL = import.meta.env.VITE_LIFF_REDIRECT_FORM;
@@ -90,13 +107,9 @@ export default {
       const VERTIFY = `hello`;
       // const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&state=${VERTIFY}&scope=profile%20openid%20email&initial_amr_display=lineqr`;
 
-      const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&state=${VERTIFY}&scope=profile%20openid%20email&username=${this.username}&initial_amr_display=lineqr`;
+      const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&state=${VERTIFY}&scope=profile%20openid%20email&initial_amr_display=lineqr`;
 
-      window.open(url, "_blank");
-
-      //
-      // let liffUrl = `https://liff.line.me/1657499945-BMr9RMVe/?username=${this.username}&phone=${this.phone}`;
-      // window.open(liffUrl, "_blank");
+      // window.open(url, "_blank");
     },
     openForm(e) {
       console.log("e---> ", e);

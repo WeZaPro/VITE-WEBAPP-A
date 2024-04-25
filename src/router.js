@@ -169,6 +169,7 @@ router.beforeEach((to, from, next) => {
     "/products",
     "/productitem",
     "/lineuser",
+    "/liffform",
   ];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem("user");

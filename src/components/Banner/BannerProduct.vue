@@ -61,7 +61,7 @@ export default {
   components: {},
   data() {
     return {
-      setCookies: "",
+      //setCookies: "",
       //getCookies: "",
       banner: "",
       username: "",
@@ -83,33 +83,32 @@ export default {
     this.getGoogleSheetDataBanner();
   },
   methods: {
-    setCookies(name, phone) {
+    setCookiesData(name, phone) {
       const { cookies } = useCookies();
       cookies.set("acylic_cookies_name", name);
       cookies.set("acylic_cookies_phone", phone);
+      return true;
+      //document.cookie = "key1 = value1;key2 = value2;expires = date";
     },
-    // getCookies() {
-    //   const { cookies } = useCookies();
-    //   this.getCookies = cookies.get("acylic_cookies");
-    //   console.log("this.getCookies-->", this.getCookies);
-    // },
     getFormValues() {
-      this.username = this.username;
-      this.phone = this.phone;
-
-      // save data to cookies
-      this.setCookies(this.username, this.phone);
-      // goto line login
-      //
       const CLIENT_ID = import.meta.env.VITE_LIFF_CLIENT_ID_FORM;
       const REDIRECT_URL = import.meta.env.VITE_LIFF_REDIRECT_FORM;
-
       const VERTIFY = `hello`;
-      // const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&state=${VERTIFY}&scope=profile%20openid%20email&initial_amr_display=lineqr`;
-
       const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&state=${VERTIFY}&scope=profile%20openid%20email&initial_amr_display=lineqr`;
 
-      // window.open(url, "_blank");
+      // save data to cookies
+      let set_cookies = this.setCookiesData(this.username, this.phone);
+      console.log("set_cookies---> ", set_cookies);
+      if (set_cookies === true) {
+        window.open(url, "_blank");
+      }
+
+      // goto line login
+      //
+
+      // const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&state=${VERTIFY}&scope=profile%20openid%20email&initial_amr_display=lineqr`;
+
+      //window.open(url, "_blank");
     },
     openForm(e) {
       console.log("e---> ", e);

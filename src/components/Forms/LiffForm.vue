@@ -12,6 +12,12 @@
 
             <h3>new IpAddress</h3>
             <p>{{ new_IPADDRESS }}</p>
+
+            <h3>user name</h3>
+            <p>{{ getCookies_username }}</p>
+
+            <h3>phone</h3>
+            <p>{{ getCookies_phone }}</p>
             <!-- <h3>userId</h3>
     <p>{{ this.userId_queryString }}</p> -->
           </div>

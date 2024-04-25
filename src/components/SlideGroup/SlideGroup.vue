@@ -14,7 +14,7 @@
                 :src="item.src"
                 class="card-img-top"
                 alt="..."
-                style="width: 640px; height: 360px"
+                style="width: 500px; height: 400px"
               />
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
@@ -35,7 +35,7 @@
                 :src="item.src"
                 class="card-img-top"
                 alt="..."
-                style="width: 640px; height: 360px"
+                style="width: 500px; height: 400px"
               />
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
@@ -57,7 +57,7 @@
                 :src="item.src"
                 class="card-img-top"
                 alt="..."
-                style="width: 640px; height: 360px"
+                style="width: 500px; height: 400px"
               />
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
@@ -185,7 +185,7 @@ export default {
   max-height: 100%;
 }
 .card {
-  margin: 0 0.5em;
+  margin: 0 1.5em;
   box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
   border: none;
   border-radius: 3;

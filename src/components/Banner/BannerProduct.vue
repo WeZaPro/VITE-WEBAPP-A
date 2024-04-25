@@ -5,14 +5,12 @@
   <div class="containerL" height="500">
     <!-- ------ -->
 
-    <v-parallax :src="banner" height="500">
+    <v-parallax :src="banner" height="800">
       <div
         class="d-flex flex-column fill-height justify-center align-center text-white"
       >
-        <h1 class="text-h4 font-weight-thin mb-4">Banner Product</h1>
-        <h4 class="subheading">Shop near me!</h4>
-
         <p class="p1"><i class="fa fa-gift"></i> ลงทะเบียนรับส่วนลด</p>
+
         <div v-if="showDiv === true">
           <v-btn
             class="mt-0"
@@ -34,6 +32,10 @@
             ><i class="fa fa-edit"></i> ลงทะเบียน</v-btn
           >
         </div>
+
+        <h1 class="text-h4 font-weight-thin mb-4 mt-5">Banner Product</h1>
+        <h4 class="subheading">Shop near me!</h4>
+
         <div v-show="showDiv" class="form-width mt-3">
           <!-- <v-sheet class="mx-auto" width="300"> -->
           <v-form @submit.prevent="getFormValues">
@@ -146,7 +148,7 @@ export default {
         console.log("phoneNumberFormat ", phoneNumberFormat);
         if (phoneNumberFormat) {
           this.setCookiesData(this.username, phoneNumberFormat);
-          window.open(url, "_blank");
+          //window.open(url, "_blank");
         }
 
         // console.log("set_cookies---> ", set_cookies);

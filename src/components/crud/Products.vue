@@ -1,11 +1,4 @@
 <template>
-  <!-- <v-container class="bg-surface-variant mt-50">
-    <v-row no-gutters>
-      <BannerProduct />
-    </v-row>
-  </v-container> -->
-  <!-- <v-container fluid class="hero" /> -->
-
   <div id="app">
     <MobileProductBanner v-if="mobileView" />
     <!-- <div class="content" :class="{ open: showNav }"> -->
@@ -16,6 +9,18 @@
     </div>
   </div>
   <!-- under bar -------------------------->
+
+  <v-card class="pa-5" color="light-grey" elevation="16" max-width="100%">
+    <div class="mt-0">
+      <SlideGroup />
+    </div>
+  </v-card>
+
+  <v-card class="pa-5" color="light-grey" elevation="16" max-width="100%">
+    <div class="mt-0">
+      <Carousel />
+    </div>
+  </v-card>
 
   <div class="pa-3 text-center secondary rounded-lg">
     <v-card class="pa-1" color="light-blue" elevation="16" max-width="100%">
@@ -28,11 +33,13 @@
       </div>
 
       <v-card-item>
-        <v-card-title>
-          WEBSITE ศูนย์รวมร้านอาหารดัง ในจังหวัดชลบุรี
-        </v-card-title>
+        <v-card-title> รับผลิตโลห์รางวัล อะคริลิค </v-card-title>
 
-        <v-card-subtitle> รวมแหล่งร้านดัง และของอร่อย มากมาย </v-card-subtitle>
+        <v-card-title> โดยการออกแบบที่สวยงาม ทันสมัย</v-card-title>
+
+        <v-card-subtitle>
+          จากช่างมืออาชีพ ที่ชำนาญการและมีประสบการณ์
+        </v-card-subtitle>
       </v-card-item>
 
       <v-card-text>
@@ -76,6 +83,10 @@ import CardDesignB from "../componentCard/CardDesign.vue";
 import BannerProduct from "../../components/Banner/BannerProduct.vue";
 import MobileProductBanner from "../../components/Banner/MobileProductBanner.vue";
 
+//
+import Carousel from "../../components/carousel/Carousel.vue";
+import SlideGroup from "../../components/SlideGroup/SlideGroup.vue";
+
 export default {
   name: "Products",
   // props: {
@@ -90,6 +101,8 @@ export default {
     MobileProductBanner,
     BannerProduct,
     CardDesignB,
+    Carousel,
+    SlideGroup,
   },
   data() {
     return {
@@ -383,6 +396,12 @@ div.exampleA {
 @media screen and (min-width: 1026px) {
   div.exampleA {
     display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .card img {
+    height: 11em;
   }
 }
 </style>

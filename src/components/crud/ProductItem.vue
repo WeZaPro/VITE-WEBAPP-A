@@ -133,6 +133,7 @@
             link
           >
             <v-icon color="sussess" icon="mdi-account"></v-icon>
+
             <v-rating
               :model-value="4.5"
               color="amber"
@@ -141,6 +142,7 @@
               half-increments
               readonly
             ></v-rating>
+            <!-- <v-img class="zoom" height="300px" :src="item.val" cover></v-img> -->
             <v-img class="zoom" height="300px" :src="item.val" cover></v-img>
 
             <!-- <v-icon color="sussess" icon="mdi-account"></v-icon>

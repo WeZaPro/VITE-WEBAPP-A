@@ -67,7 +67,7 @@
       <div v-show="show">
         <v-divider></v-divider>
         <div>
-          <v-img height="300px" :src="imgB" cover></v-img>
+          <v-img height="200px" :src="imgB" cover></v-img>
         </div>
 
         <v-card-text>

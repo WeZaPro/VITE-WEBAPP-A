@@ -1,12 +1,12 @@
 <template>
-  <div class="containerL">
+  <div class="containerL" height="500">
     <!-- <v-row no-gutters>
       <v-img max-height="800" :src="banner" cover></v-img>
     </v-row> -->
 
     <!-- <v-parallax height="800" :src="banner"></v-parallax> -->
 
-    <v-parallax height="800" :src="banner">
+    <v-parallax height="500" :src="banner">
       <div
         class="d-flex flex-column fill-height justify-center align-center text-white"
       >

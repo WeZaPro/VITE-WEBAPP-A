@@ -5,16 +5,32 @@
   <div class="containerL" height="500">
     <!-- ------ -->
 
-    <v-parallax :src="banner">
+    <v-parallax :src="banner" height="500">
       <div
         class="d-flex flex-column fill-height justify-center align-center text-white"
       >
-        <!-- <h1 class="text-h4 font-weight-thin mb-4">Banner Product</h1>
-        <h4 class="subheading">Restaurants near me!</h4> -->
+        <h1 class="text-h4 font-weight-thin mb-4">Banner Product</h1>
+        <h4 class="subheading">Shop near me!</h4>
 
         <p class="p1"><i class="fa fa-gift"></i> ลงทะเบียนรับส่วนลด</p>
-        <div>
-          <v-btn class="mt-0" color="blue" @click="openForm($event)" block
+        <div v-if="showDiv === true">
+          <v-btn
+            class="mt-0"
+            color="grey"
+            width="35vh"
+            @click="openForm($event)"
+            block
+            ><i class="fa fa-edit"></i> ลงทะเบียน</v-btn
+          >
+        </div>
+
+        <div v-if="showDiv === false">
+          <v-btn
+            class="mt-0"
+            color="pink"
+            width="35vh"
+            @click="openForm($event)"
+            block
             ><i class="fa fa-edit"></i> ลงทะเบียน</v-btn
           >
         </div>
@@ -23,6 +39,7 @@
           <v-form @submit.prevent="getFormValues">
             <v-text-field
               class="my-input"
+              type="text"
               solo
               filled
               rounded
@@ -32,14 +49,16 @@
 
             <v-text-field
               class="my-input"
+              type="number"
               solo
               filled
               rounded
-              v-model="phone"
+              v-model.number="phone"
+              @keypress="onlyNumber($event)"
               label="เบอร์โทรศัพท์"
             ></v-text-field>
 
-            <v-btn class="mt-0" color="blue" type="submit" block
+            <v-btn class="mt-0" color="pink" width="30vh" type="submit" block
               ><i class="fa fa-check" aria-hidden="true"></i> ส่งข้อมูล</v-btn
             >
           </v-form>
@@ -83,6 +102,14 @@ export default {
     this.getGoogleSheetDataBanner();
   },
   methods: {
+    onlyNumber($event) {
+      //console.log($event.keyCode); //keyCodes value
+      let keyCode = $event.keyCode ? $event.keyCode : $event.which;
+      if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) {
+        // 46 is dot
+        $event.preventDefault();
+      }
+    },
     setCookiesData(name, phone) {
       const { cookies } = useCookies();
       cookies.set("acylic_cookies_name", name);
@@ -96,11 +123,15 @@ export default {
       const VERTIFY = `hello`;
       const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&state=${VERTIFY}&scope=profile%20openid%20email&initial_amr_display=lineqr`;
 
-      // save data to cookies
-      let set_cookies = this.setCookiesData(this.username, this.phone);
-      console.log("set_cookies---> ", set_cookies);
-      if (set_cookies === true) {
-        window.open(url, "_blank");
+      if (this.username === "" || this.phone === "") {
+        alert("กรถณาใส่ข้อมูลให้ครบ");
+      } else {
+        // save data to cookies
+        let set_cookies = this.setCookiesData(this.username, this.phone);
+        console.log("set_cookies---> ", set_cookies);
+        if (set_cookies === true) {
+          //window.open(url, "_blank");
+        }
       }
 
       // goto line login

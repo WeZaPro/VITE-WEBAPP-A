@@ -1,6 +1,6 @@
 <template>
-  <div class="containerL">
-    <v-parallax height="800" :src="banner">
+  <div class="containerL" height="500">
+    <v-parallax height="500" :src="banner">
       <div
         class="d-flex flex-column fill-height justify-center align-center text-white"
       >

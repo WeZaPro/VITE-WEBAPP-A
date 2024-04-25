@@ -30,11 +30,13 @@
       </div>
 
       <v-card-item>
-        <v-card-title>
-          WEBSITE ศูนย์รวมร้านอาหารดัง ในจังหวัดชลบุรี
-        </v-card-title>
+        <v-card-title> รับผลิตโลห์รางวัล อะคริลิค </v-card-title>
 
-        <v-card-subtitle> รวมแหล่งร้านดัง และของอร่อย มากมาย </v-card-subtitle>
+        <v-card-title> โดยการออกแบบที่สวยงาม ทันสมัย</v-card-title>
+
+        <v-card-subtitle>
+          จากช่างมืออาชีพ ที่ชำนาญการและมีประสบการณ์
+        </v-card-subtitle>
       </v-card-item>
 
       <v-card-text>

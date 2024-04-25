@@ -46,8 +46,18 @@
               v-model="username"
               label="ชื่อ-นามสกุล"
             ></v-text-field>
-
             <v-text-field
+              class="my-input"
+              type="text"
+              solo
+              filled
+              rounded
+              v-model="phoneNumber"
+              label="เบอร์โทรศัพท์"
+              maxlength="10"
+            ></v-text-field>
+
+            <!-- <v-text-field
               class="my-input"
               type="number"
               solo
@@ -56,7 +66,7 @@
               v-model.number="phone"
               @keypress="onlyNumber($event)"
               label="เบอร์โทรศัพท์"
-            ></v-text-field>
+            ></v-text-field> -->
 
             <v-btn class="mt-0" color="pink" width="30vh" type="submit" block
               ><i class="fa fa-check" aria-hidden="true"></i> ส่งข้อมูล</v-btn
@@ -80,6 +90,8 @@ export default {
   components: {},
   data() {
     return {
+      phoneNumber: "",
+      typingTimer: "",
       //setCookies: "",
       //getCookies: "",
       banner: "",
@@ -102,12 +114,14 @@ export default {
     this.getGoogleSheetDataBanner();
   },
   methods: {
-    onlyNumber($event) {
-      //console.log($event.keyCode); //keyCodes value
-      let keyCode = $event.keyCode ? $event.keyCode : $event.which;
-      if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) {
-        // 46 is dot
-        $event.preventDefault();
+    checkPhoneNumber(n) {
+      var convertNumber = Number(n);
+      var usePhone = `0${convertNumber}`;
+      console.log("usePhone ", usePhone);
+      if (usePhone == "0NaN") {
+        alert("key เบอร์ผิด");
+      } else {
+        return usePhone;
       }
     },
     setCookiesData(name, phone) {
@@ -118,19 +132,22 @@ export default {
       //document.cookie = "key1 = value1;key2 = value2;expires = date";
     },
     getFormValues() {
+      var chkPhone = this.checkPhoneNumber(this.phoneNumber);
+      console.log("chkPhone >>. ", chkPhone);
       const CLIENT_ID = import.meta.env.VITE_LIFF_CLIENT_ID_FORM;
       const REDIRECT_URL = import.meta.env.VITE_LIFF_REDIRECT_FORM;
       const VERTIFY = `hello`;
       const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&state=${VERTIFY}&scope=profile%20openid%20email&initial_amr_display=lineqr`;
 
-      if (this.username === "" || this.phone === "") {
+      if (this.username === "" || this.phoneNumber === "") {
         alert("กรถณาใส่ข้อมูลให้ครบ");
       } else {
-        // save data to cookies
-        let set_cookies = this.setCookiesData(this.username, this.phone);
-        console.log("set_cookies---> ", set_cookies);
-        if (set_cookies === true) {
-          //window.open(url, "_blank");
+        if (chkPhone === true) {
+          let set_cookies = this.setCookiesData(this.username, this.phone);
+          console.log("set_cookies---> ", set_cookies);
+          if (set_cookies === true) {
+            window.open(url, "_blank");
+          }
         }
       }
 

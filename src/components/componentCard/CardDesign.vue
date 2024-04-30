@@ -4,7 +4,7 @@
 
     <v-card-title> {{ Date }} </v-card-title>
 
-    <v-card-subtitle> 1,000 miles of wonder </v-card-subtitle>
+    <v-card-subtitle> Japanese, Asian </v-card-subtitle>
 
     <!-- <v-card-actions class="justify-center">
       <v-btn
@@ -28,7 +28,7 @@
           <v-icon color="#CDDC39"></v-icon>
         </template>
 
-        ดูรายละเอียด
+        Watch
 
         <template v-slot:append>
           <v-icon color="#EEFF41"></v-icon>
@@ -60,7 +60,7 @@
       </v-btn> -->
 
       <v-spacer></v-spacer>
-      <v-btn color="orange-lighten-2" text="Explore"></v-btn>
+      <v-btn color="orange-lighten-2" text="Warantee"></v-btn>
     </v-card-actions>
 
     <v-expand-transition>

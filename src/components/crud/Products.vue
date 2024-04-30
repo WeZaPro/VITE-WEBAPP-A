@@ -8,13 +8,24 @@
       </div>
     </div>
   </div>
-  <!-- under bar -------------------------->
+  <!-- Slide Group Start---------------------->
+  <div v-if="!mobileView">
+    <v-card class="pa-5" color="light-grey" elevation="16" max-width="100%">
+      <div class="mt-0">
+        <SlideGroup />
+      </div>
+    </v-card>
+  </div>
 
-  <v-card class="pa-5" color="light-grey" elevation="16" max-width="100%">
-    <div class="mt-0">
-      <SlideGroup />
-    </div>
-  </v-card>
+  <div v-if="mobileView">
+    <v-card class="pa-5" color="light-grey" elevation="16" max-width="100%">
+      <div class="mt-0">
+        <SlideGroupOneUp />
+      </div>
+    </v-card>
+  </div>
+
+  <!-- Slide Group End---------------------->
 
   <v-card class="pa-5" color="light-grey" elevation="16" max-width="100%">
     <div class="mt-0">
@@ -23,7 +34,12 @@
   </v-card>
 
   <div class="pa-3 text-center secondary rounded-lg">
-    <v-card class="pa-1" color="light-blue" elevation="16" max-width="100%">
+    <v-card
+      class="pa-1"
+      color="purple-darken-1"
+      elevation="16"
+      max-width="100%"
+    >
       <!-- <img class="" src="../../assets/reslogo.png" width="5%" /> -->
       <div class="example">
         <img class="example" src="../../assets/reslogo.png" width="5%" />
@@ -33,18 +49,19 @@
       </div>
 
       <v-card-item>
-        <v-card-title> รับผลิตโลห์รางวัล อะคริลิค </v-card-title>
+        <v-card-title> Bangkok Sukiyaki & Shabu Shabu </v-card-title>
 
-        <v-card-title> โดยการออกแบบที่สวยงาม ทันสมัย</v-card-title>
+        <v-card-title> Top Restaurants in Bangkok</v-card-title>
 
         <v-card-subtitle>
-          จากช่างมืออาชีพ ที่ชำนาญการและมีประสบการณ์
+          In saigon me and my friends really like MK , this place is good choice
+          , we... A gotta try meal in Thailand
         </v-card-subtitle>
       </v-card-item>
 
       <v-card-text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+        The buffet is the hot pot menu. You have 1hr 45 min for supper to chow
+        down all... Simple Thai food at low price
       </v-card-text>
     </v-card>
   </div>
@@ -86,6 +103,7 @@ import MobileProductBanner from "../../components/Banner/MobileProductBanner.vue
 //
 import Carousel from "../../components/carousel/Carousel.vue";
 import SlideGroup from "../../components/SlideGroup/SlideGroup.vue";
+import SlideGroupOneUp from "../../components/SlideGroup/SlideGroupOneUp.vue";
 
 export default {
   name: "Products",
@@ -103,6 +121,7 @@ export default {
     CardDesignB,
     Carousel,
     SlideGroup,
+    SlideGroupOneUp,
   },
   data() {
     return {
@@ -163,13 +182,6 @@ export default {
       this.isUserScrolling = window.scrollY > 0;
       console.log("calling handleScroll");
       const _second = window.scrollY / 1000;
-      // if (window.scrollY > 1000) {
-      //   alert("Scroll = " + _second + " s ");
-      // }
-
-      console.log("event --> ", event);
-      console.log("this.isUserScrolling --> ", this.isUserScrolling);
-      console.log("window.scrollY --> ", window.scrollY);
     },
     handleView() {
       this.mobileView = window.innerWidth <= 800;
@@ -194,7 +206,7 @@ export default {
       const url = import.meta.env.VITE_API_MONGO + "/admin/products";
       await axios.get(url).then((res) => {
         this.products = res.data.data;
-        // console.log("res ", res.data);
+        console.log("this.products >>>>>>> ", res.data);
       });
     },
   },

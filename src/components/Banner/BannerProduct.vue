@@ -33,7 +33,9 @@
           >
         </div>
 
-        <h1 class="text-h4 font-weight-thin mb-4 mt-5">Banner Product</h1>
+        <h1 class="text-h4 font-weight-thin mb-4 mt-5">
+          Top Restaurants in Bangkok
+        </h1>
         <h4 class="subheading">Shop near me!</h4>
 
         <div v-show="showDiv" class="form-width mt-3">
@@ -148,7 +150,7 @@ export default {
         console.log("phoneNumberFormat ", phoneNumberFormat);
         if (phoneNumberFormat) {
           this.setCookiesData(this.username, phoneNumberFormat);
-          //window.open(url, "_blank");
+          window.open(url, "_blank");
         }
 
         // console.log("set_cookies---> ", set_cookies);

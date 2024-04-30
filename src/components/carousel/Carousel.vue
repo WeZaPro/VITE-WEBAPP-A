@@ -14,16 +14,16 @@ export default {
     return {
       items: [
         {
-          src: "https://inwfile.com/s-cf/8dkdru.jpg",
+          src: "https://img.freepik.com/free-photo/fresh-cocktails-with-ice-lemon-lime-fruits-generative-ai_188544-12370.jpg",
         },
         {
-          src: "https://www.octopus.co.th/cdn/shop/products/962252-385045.jpg?v=1631293298",
+          src: "https://img.freepik.com/free-photo/various-ingredients-shabu-hot-pot-with-sauce_1150-35279.jpg?size=626&ext=jpg&ga=GA1.1.87170709.1707436800&semt=ais",
         },
         {
-          src: "https://33production.com/wp-content/uploads/2019/05/00.jpg",
+          src: "https://img.freepik.com/premium-photo/top-view-people-eating-shabu-shabu-hot-pot-with-fresh-sliced-meat-sea-food-vegetables-with-black-background_67155-4592.jpg",
         },
         {
-          src: "https://www.โล่รางวัล.com/wp-content/uploads/2021/09/Banner-web23-%E0%B9%82%E0%B8%A5%E0%B9%88%E0%B8%AD%E0%B8%B0%E0%B8%84%E0%B8%A3%E0%B8%B4%E0%B8%A5%E0%B8%B4%E0%B8%84%E0%B8%AA%E0%B8%B3%E0%B9%80%E0%B8%A3%E0%B9%87%E0%B8%88.jpg.webp",
+          src: "https://img.freepik.com/premium-photo/set-shabu-shabu-hot-pot-fresh-sliced-meat-sea-food-vegetables_41158-2117.jpg",
         },
       ],
     };

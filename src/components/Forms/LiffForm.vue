@@ -1,10 +1,11 @@
 <template>
+  <!-- get data and set save to google sheet -->
   <v-container fluid>
     <v-row no-gutters class="bg-surface-variant mt-15">
       <v-col cols="12">
         <v-sheet class="pa-2 ma-2 text-center">
           <div id="header">
-            <h3>LIFF FORM</h3>
+            <h3>Table booking</h3>
             <h3>username</h3>
             <p>{{ this.lineDisplayName }}</p>
             <h3>lineUserId</h3>
@@ -39,13 +40,20 @@
             <p id="os">{{ os }}</p>
           </div>
           <div>
-            <button
+            <!-- <button
               class="container text-center btn btn-success btn-block mt-5"
               @click="lineLogin"
             >
-              <!-- <img src="https://i.stack.imgur.com/e2S63.png" width="20" /> -->
-              <img src="../../assets/lineicon.png" width="20" />
+               <img src="../../assets/lineicon.png" width="20" />
               Line Login
+            </button> -->
+
+            <button
+              class="container text-center btn btn-success btn-block mt-5"
+              @click="booking"
+            >
+              <img src="../../assets/lineicon.png" width="20" />
+              BOOKING
             </button>
           </div>
         </v-sheet>
@@ -107,6 +115,15 @@ export default {
     //this.saveData(data)
   },
   methods: {
+    booking() {
+      console.log("this.lineDisplayName ", this.lineDisplayName);
+      console.log("this.profile.userId ", this.profile.userId);
+      console.log("this.new_IPADDRESS ", this.new_IPADDRESS);
+      console.log("this.getCookies_username ", this.getCookies_username);
+      console.log("this.getCookies_phone ", this.getCookies_phone);
+
+      // save to google sheet
+    },
     getCookies() {
       const { cookies } = useCookies();
       this.getCookies_username = cookies.get("acylic_cookies_name");
